@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        body {
+            background-color: hsl(148, 38%, 91%);
+            padding: 1rem;
+        }
+        
+        .contact-container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group1 {
+            display: flex;
+            margin-bottom: 2rem;
+            column-gap: 1rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #444;
+            font-weight: 500;
+        }
+        
+        .onto-firstname {
+            display: grid;
+        }
+        
+        .first-name-input {
+            width: 28.7rem;
+            height: 2rem;
+        }
+        
+        .last-name-input {
+            width: 28.7rem;
+            height: 2rem;
+        }
+        
+        .email-input {
+            width: 100%;
+        }
+        
+        input,
+        select,
+        textarea {
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #0066cc;
+            box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.2);
+        }
+        
+        .radio-group {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .radio-option {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            border-radius: 5px;
+            gap: 0.5rem;
+            border: 1px solid gray;
+            width: 28.7rem;
+            height: 2rem;
+            padding: 1rem;
+        }
+        
+        textarea {
+            width: 100%;
+            height: 120px;
+            resize: vertical;
+        }
+        
+        .consent-group {
+            display: flex;
+            gap: 0.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        button {
+            background-color: #0066cc;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.2s;
+        }
+        
+        button:hover {
+            background-color: #0052a3;
+        }
+        
+        .required::after {
+            content: "*";
+            color: blue;
+            margin-left: 0.25rem;
+        }
+        
+        @media (max-width: 480px) {
+            .check-box {
+                width: 20px;
+            }
+            .contact-container {
+                padding: 1.5rem;
+                margin: 1rem auto;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+            .form-group1 {
+                display: block;
+            }
+            .first-name-input {
+                width: 100%;
+                height: 2rem;
+            }
+            .last-name-input {
+                width: 100%;
+                height: 2rem;
+            }
+            .radio-group {
+                display: block;
+                gap: 2rem;
+            }
+            .radio-option {
+                height: min-content;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="contact-container">
+        <h1>Contact Us</h1>
+        <form id="contactForm">
+            <div class="form-group1">
+                <div class="onto-firstname">
+                    <label class="required">First Name</label>
+                    <input class="first-name-input" type="text" name="firstName" required>
+                </div>
+
+                <div class="onto-firstname">
+                    <label class="required">Last Name</label>
+                    <input class="last-name-input" type="text" name="lastName" required>
+                </div>
+
+
+            </div>
+
+
+
+            <div class="form-group">
+                <label class="required">Email Address</label>
+                <input class="email-input" type="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label class="required">Query Type</label>
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" name="queryType" value="general" required>
+                        General Enquiry
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="queryType" value="support">
+                        Support Request
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="required">Message</label>
+                <textarea name="message" required></textarea>
+            </div>
+
+            <div class="consent-group">
+                <input type="checkbox" name="consent" required class="check-box">
+                <label class="required">I consent to being contacted by the team</label>
+            </div>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <div class="attribution">
+        Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. Coded by <a href="#">Your Name Here</a>.
+    </div>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            if (document.getElementById('contactForm').checkValidity()) {
+                // Handle form submission here
+                alert('Form submitted successfully!');
+                e.target.reset();
+            } else {
+                alert('Please fill in all required fields');
+            }
+        });
+    </script>
+</body>
+
+</html>
