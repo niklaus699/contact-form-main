@@ -6,12 +6,12 @@ const queryTypeRadios = document.querySelectorAll("input[name='queryType']");
 const message = document.getElementById("message");
 const consent = document.getElementById("consent");
 
-firstName.addEventListener("input", () => validateFirstName(firstName));
-lastName.addEventListener("input", () => validateLastName(lastName));
-email.addEventListener("input", () => emailValidation(email));
-queryTypeRadios.forEach(radio => radio.addEventListener("change", () => queryTypeValidation()));
-message.addEventListener("input", () => messageValidation(message));
-consent.addEventListener("input", () => consentValidation(consent));
+// firstName.addEventListener("input", () => validateFirstName(firstName));
+// lastName.addEventListener("input", () => validateLastName(lastName));
+// email.addEventListener("input", () => emailValidation(email));
+// queryTypeRadios.forEach(radio => radio.addEventListener("change", () => queryTypeValidation()));
+// message.addEventListener("input", () => messageValidation(message));
+// consent.addEventListener("input", () => consentValidation(consent));
 
 form.addEventListener("submit", function(e) {
     e.preventDefault();
@@ -27,6 +27,8 @@ form.addEventListener("submit", function(e) {
     if (validateForm()) {
         alert("Form Submitted Successfully!");
         this.reset();
+        document.querySelectorAll(".error-message").forEach(msg => msg.style.visibility = "hidden");
+        document.querySelectorAll("input, select, textarea").forEach(input => input.classList.remove("error"));
     } else {
         console.error("Fill in all details.");
     }
@@ -98,7 +100,7 @@ const emailValidation = (email) => {
         email.classList.remove("success");
         email.classList.add("error");
         return false;
-    } else if (emailPattern.test(email.value) && !email.value.trim() === '') {
+    } else if (emailPattern.test(email.value) && email.value.trim() != '') {
         document.getElementById("emailError").style.visibility = "hidden";
         email.classList.remove("error");
         email.classList.add("success");
