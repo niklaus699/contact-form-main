@@ -54,7 +54,7 @@ const validateFirstName = (firstName) => {
         document.getElementById("firstNameError").style.visibility = "visible";
         firstName.classList.add("error");
         return false;
-    } else if (namePattern.test(firstName.value) && !firstName.value.trim() === "" && !firstName.value.length < 3) {
+    } else if (namePattern.test(firstName.value) && firstName.value.trim() != "" && firstName.value.length >= 3) {
         document.getElementById("firstNameError").style.visibility = "hidden";
         firstName.classList.remove("error");
         firstName.classList.add("success");
@@ -72,7 +72,7 @@ const validateLastName = (lastName) => {
         document.getElementById("lastNameError").style.visibility = "visible";
         lastName.classList.add("error");
         return false;
-    } else if (namePattern.test(lastName.value) && !lastName.value.trim() === "" && !lastName.value.length < 3) {
+    } else if (namePattern.test(lastName.value) && lastName.value.trim() != "" && lastName.value.length >= 3) {
         document.getElementById("lastNameError").style.visibility = "hidden";
         lastName.classList.remove("error");
         lastName.classList.add("success");
@@ -113,7 +113,7 @@ const messageValidation = (message) => {
         document.getElementById("messageError").style.visibility = "visible";
         message.classList.add("error");
         return false;
-    } else if (message.value.length >= 10 || message.value.trim() === "") {
+    } else if (message.value.length >= 10 && message.value.trim() != "") {
         document.getElementById("messageError").style.visibility = "hidden";
         message.classList.remove("error");
         message.classList.add("success");
