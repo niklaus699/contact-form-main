@@ -91,15 +91,12 @@ const validateLastName = (lastName) => {
 }
 
 // Email Validation
-const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const emailValidation = (email) => {
-    if (email.value.trim() === '') {
+    if (email.value.trim() === '' || !emailPattern.test(email.value)) {
         document.getElementById("emailError").style.visibility = "visible";
         email.classList.remove("success");
         email.classList.add("error");
-        return false;
-    } else if (!emailPattern.test(email.value)) {
-        handleStyleOf(email, idName = "emailError", textContent = "Invalid Format For Email Address");
         return false;
     } else if (emailPattern.test(email.value) && !email.value.trim() === '') {
         document.getElementById("emailError").style.visibility = "hidden";
