@@ -19,7 +19,7 @@ form.addEventListener("submit", function(e) {
     firstName.addEventListener("input", () => validateFirstName(firstName));
     lastName.addEventListener("input", () => validateLastName(lastName));
     email.addEventListener("input", () => emailValidation(email));
-    queryType.addEventListener("input", () => queryTypeValidation(queryType));
+    queryTypeRadios.forEach(radio => radio.addEventListener("change", () => queryTypeValidation()));
     message.addEventListener("input", () => messageValidation(message));
     consent.addEventListener("change", () => consentValidation(consent));
 
@@ -45,8 +45,7 @@ const validateForm = () => {
 // Name Validation
 const namePattern = /^[a-zA-Z ]+$/;
 const validateFirstName = (firstName) => {
-    console.log('helo')
-    if (firstName.value.trim() === "") {
+    if (firstName.value.trim() === "" || firstName.value.length < 3) {
         document.getElementById("firstNameError").style.visibility = "visible";
         firstName.classList.add("error");
         return false;
@@ -55,17 +54,16 @@ const validateFirstName = (firstName) => {
         document.getElementById("firstNameError").style.visibility = "visible";
         firstName.classList.add("error");
         return false;
-    } else {
+    } else if (namePattern.test(firstName.value) && !firstName.value.trim() === "" && !firstName.value.length < 3) {
         document.getElementById("firstNameError").style.visibility = "hidden";
         firstName.classList.remove("error");
         firstName.classList.add("success");
         return true;
     }
 }
-console.log(validateFirstName(firstName));
 
 const validateLastName = (lastName) => {
-    if (lastName.value.trim() === "") {
+    if (lastName.value.trim() === "" || lastName.value.length < 3) {
         document.getElementById("lastNameError").style.visibility = "visible";
         lastName.classList.add("error");
         return false;
@@ -74,7 +72,7 @@ const validateLastName = (lastName) => {
         document.getElementById("lastNameError").style.visibility = "visible";
         lastName.classList.add("error");
         return false;
-    } else {
+    } else if (namePattern.test(lastName.value) && !lastName.value.trim() === "" && !lastName.value.length < 3) {
         document.getElementById("lastNameError").style.visibility = "hidden";
         lastName.classList.remove("error");
         lastName.classList.add("success");
@@ -89,7 +87,7 @@ const emailValidation = (email) => {
         document.getElementById("emailError").style.visibility = "visible";
         email.classList.add("error");
         return false;
-    } else {
+    } else if (emailPattern.test(email.value) && !email.value.trim() === '') {
         document.getElementById("emailError").style.visibility = "hidden";
         email.classList.remove("error");
         email.classList.add("success");
@@ -98,7 +96,7 @@ const emailValidation = (email) => {
 }
 
 // Query Type Validation
-const queryTypeValidation = (queryType) => {
+const queryTypeValidation = () => {
     const selectedQueryType = document.querySelector("input[name='queryType']:checked");
     if (!selectedQueryType) {
         document.getElementById("queryTypeError").style.visibility = "visible";
@@ -111,11 +109,11 @@ const queryTypeValidation = (queryType) => {
 
 // Message Validation
 const messageValidation = (message) => {
-    if (message.value.trim() === "") {
+    if (message.value.trim() === "" || message.value.length < 10) {
         document.getElementById("messageError").style.visibility = "visible";
         message.classList.add("error");
         return false;
-    } else {
+    } else if (message.value.length >= 10 || message.value.trim() === "") {
         document.getElementById("messageError").style.visibility = "hidden";
         message.classList.remove("error");
         message.classList.add("success");
